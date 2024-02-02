@@ -3,6 +3,15 @@ const model = require('../model');
 
 const router = express.Router();
 
+router.get('/movie', async (req, res) => {
+    try{
+        const data = await model.find();
+        res.json(data);
+    }catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
 router.post('/movie', async (req,res) => {
     const data = new model(
         {
